@@ -1,0 +1,8 @@
+<p> This is Show page</p>
+         
+
+<p> Title: <%= @article.title %></p>
+<p> Description: <%= @article.description %></p>
+<%= link_to "Edit This Article", edit_article_path(@article) %>
+<%= link_to "Show All Articles", articles_path %>
+
