@@ -12,7 +12,7 @@ class ArticlesController < ActionController::Base
   end
 
   def create
-    debugger
+    #debugger
     # render plain: params[:article].inspect
     puts 'in create method 00000000000000000000000'
     @article = Article.new(article_params)
