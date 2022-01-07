@@ -1,12 +1,7 @@
 class PageController < ApplicationController
-
-    def first
+  def first
     @article = Article.new(params[:id])
-    
-    end
-    
-    def second
+  end
 
-    end
-            
+  def second; end
 end
