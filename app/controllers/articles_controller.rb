@@ -12,7 +12,7 @@ class ArticlesController < ActionController::Base
   end
 
   def create
-    #debugger
+    # debugger
     # render plain: params[:article].inspect
     puts 'in create method 00000000000000000000000'
     @article = Article.new(article_params)
@@ -20,23 +20,24 @@ class ArticlesController < ActionController::Base
     if @article.save
       flash[:notice] = 'Article was successfully saved'
 
-      puts 'in create method 000000000000000000000000000000000'
       redirect_to articles_path
     else
       render 'new'
     end
   end
 
-  def show; end
+  def show
+   end
 
   def edit
     puts 'IN def edit method 00000000000000000000000000 '
+    @article = Article.find(params[:id])
   end
 
   def update
     puts 'in def update method 000000000000000000000000000'
-    @article = Article.new(article_params)
-    if @article.save
+    @article = Article.find(params[:id])
+    if @article.update(article_params)
       redirect_to new_article_path
     else
       render 'edit'

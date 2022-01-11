@@ -4,9 +4,8 @@ Rails.application.routes.draw do
   root "page#first"
   get "page/second", to: "page#second"
   resources :articles
-  get 'user/signup', to: 'users#signup'
-  post 'users', to: 'users#create'
-  get 'user/show', to: 'users#show'
+  resources :users
+  
   # Defines the root path route ("/")
   # root "articles#index"
 end
