@@ -2,12 +2,16 @@ class ArticlesController < ActionController::Base
   before_action :find_article, only: %i[show edit]
 
   def index
-    @articles = Article.all
+    @articles = Article.paginate(page: params[:page], per_page: 7)
     puts 'in index page 000000000000000000000000000000000'
   end
 
   def new
+    puts "==============================================="
     @article = Article.new
+
+    @user_id = params[:user_id]
+    
     puts 'in def new method 00000000000000000000000000000000000000000000000000'
   end
 
@@ -16,12 +20,18 @@ class ArticlesController < ActionController::Base
     # render plain: params[:article].inspect
     puts 'in create method 00000000000000000000000'
     @article = Article.new(article_params)
-    @article.user = User.first
+   # @article.user = User.first
+
     if @article.save
       flash[:notice] = 'Article was successfully saved'
 
       redirect_to articles_path
     else
+
+      @user_id = params[:article][:user_id]
+      puts 'ffffffffffffffffffffffffffffffffffffffffffffffffffff'
+      puts @user_id.inspect
+      
       render 'new'
     end
   end
@@ -58,6 +68,6 @@ class ArticlesController < ActionController::Base
 
   def article_params
     puts 'in article params method 000000000000000000000000000000000'
-    params.require(:article).permit(:title, :description)
+    params.require(:article).permit(:title, :description, :user_id)
   end
 end

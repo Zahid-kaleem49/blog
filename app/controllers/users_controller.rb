@@ -1,12 +1,14 @@
 class UsersController < ApplicationController
   def new
     @user = User.new
+    
   end
 
   def create
     puts 'In User_controller create method 0000000000000'
-    # debugger
+    
     @user = User.new(user_params)
+    
     if @user.save
       flash[:notice] = "Welcome to alpha blog   #{@user.username} "
       render 'new'
@@ -35,6 +37,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user = @user.articles
     @user.inspect
+    
+  end
+
+  def index
+    @users = User.paginate(page: params[:page],per_page:2)
     
   end
 

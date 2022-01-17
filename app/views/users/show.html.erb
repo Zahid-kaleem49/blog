@@ -9,23 +9,26 @@
                 <th>Updated </th>
             </tr>
             
-            <% @user.each do |article|%>
+            <% @user.each do |data|%>
                 <tr>
                     <td>
-                        <%= article.title %>
+                        <%= data.title %>
                     </td>
                     <td>
-                        <%= article.description %>
+                        <%= data.description %>
                     </td>
                     <td>
-                        <%= article.user.username %>
+                        <%= data.user.username %>
                     </td>
                     
                     <td>
-                        <%= time_ago_in_words(article.created_at) %>
+                        <%= time_ago_in_words(data.created_at) %>
                     </td>
                     <td>
-                        <%= time_ago_in_words(article.updated_at) %>
+                        <%= time_ago_in_words(data.updated_at) %>
+                    </td>
+                    <td>
+                        Total datas : <%= data.user.articles.count %>
                     </td>
                     
                 </tr>

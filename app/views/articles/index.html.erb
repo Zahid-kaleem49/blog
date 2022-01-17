@@ -1,46 +1,47 @@
 <%= render "layouts/flash" %>
-
-<h1> Showing all articles</h1>
-<p>
-    <%= link_to "Create New Article" , new_article_path %>
-</p>
-<table>
-    <tr>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Created by</th>
-        <th>Created at:</th>
-        <th>Updated </th>
-    </tr>
-
-    <% @articles.each do |article|%>
+    <% will_paginate %>
+    <h1> Showing all articles</h1>
+    <p>
+        <%= link_to "Create New Article" , new_article_path %>
+    </p>
+    <table>
         <tr>
-            <td>
-                <%= article.title %>
-            </td>
-            <td>
-                <%= article.description %>
-            </td>
-            <td>
-                <%= article.user.username %>
-            </td>
-            <td>
-                <%= time_ago_in_words(article.created_at) %>
-            </td>
-            <td>
-                <%= time_ago_in_words(article.updated_at) %>
-            </td>
-            <td>
-                <%= link_to 'Edit Article' , edit_article_path(article) %>
-            </td>
-            <td>
-                <%= link_to 'Show Article' , article_path(article) %>
-            </td>
-            <td>
-                <%= link_to 'Delete' , article_path(article), method: :delete, data: {confirm:"are you sure"} %>
-            </td>
-
+            <th>Title</th>
+            <th>Description</th>
+            <th>Created by</th>
+            <th>Created at:</th>
+            <th>Updated </th>
         </tr>
-        <% end %>
 
-</table>
+        <% @articles.each do |article|%>
+            <tr>
+                <td>
+                    <%= article.title %>
+                </td>
+                <td>
+                    <%= article.description %>
+                </td>
+                <td>
+                    <%= article.user.username %>
+                </td>
+                <td>
+                    <%= time_ago_in_words(article.created_at) %>
+                </td>
+                <td>
+                    <%= time_ago_in_words(article.updated_at) %>
+                </td>
+                <td>
+                    <%= link_to 'Edit Article' , edit_article_path(article) %>
+                </td>
+                <td>
+                    <%= link_to 'Show Article' , article_path(article) %>
+                </td>
+                <td>
+                    <%= button_to 'Delete' , article_path(article), method: :delete, data: {confirm:"are you sure"} %>
+                </td>
+
+            </tr>
+            <% end %>
+            <% will_paginate %>
+
+    </table>

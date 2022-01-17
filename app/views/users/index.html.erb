@@ -1,0 +1,28 @@
+<p> All users name and email </p>
+<% will_paginate %>
+<table>
+    <tr>
+    <th> Username:</th>
+    <th>Email:</th>
+    </tr>
+    
+        <% @users.each do |user|%>
+            <tr>
+                <td>
+                    <%=user.username %>
+                </td>
+            
+            
+                <td>
+                    <%= user.email %>
+                </td>
+                <td>
+                  <%= link_to "Show user's articles", user_path(user) %>
+                </td>
+                <td>
+                    
+                    <%= link_to "Create Article for this user", new_article_path(user_id: user.id ) %>
+                </td>
+            </tr>
+        <% end %>
+</table> 
