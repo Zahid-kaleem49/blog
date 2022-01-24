@@ -1,8 +1,11 @@
 <p>hi this is first page</p>
+<<% if flash[:notice] %>
+      <%= flash[:notice] %>
+      <% end %>>
 <%= link_to "jump to welcome page", page_second_path %>
 
 
-      <%=   @article.inspect %>   
+  
 
 
 

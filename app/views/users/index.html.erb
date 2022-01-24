@@ -1,5 +1,9 @@
 <p> All users name and email </p>
-<% will_paginate %>
+<% if flash[:notice] %>
+    <%= flash[:notice] %>
+        <% end %>
+
+
 <table>
     <tr>
     <th> Username:</th>
@@ -22,7 +26,14 @@
                 <td>
                     
                     <%= link_to "Create Article for this user", new_article_path(user_id: user.id ) %>
+
                 </td>
+                <% if current_user == user %>
+                <td>
+                    <%= button_to 'delete user and its articles',user_path(user.id), method: :delete  %>
+                </td>
+                <% end %>
+
             </tr>
         <% end %>
 </table> 

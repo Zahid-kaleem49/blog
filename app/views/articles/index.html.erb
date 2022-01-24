@@ -1,5 +1,5 @@
 <%= render "layouts/flash" %>
-    <% will_paginate %>
+  
     <h1> Showing all articles</h1>
     <p>
         <%= link_to "Create New Article" , new_article_path %>
@@ -31,17 +31,20 @@
                     <%= time_ago_in_words(article.updated_at) %>
                 </td>
                 <td>
+                    <%= button_to 'Delete' , article_path(article), method: :delete, data: {confirm:"are you sure"} %>
+                </td>
+                <td>
+                    <% if logged_in? && current_user.id == article.user.id %>
                     <%= link_to 'Edit Article' , edit_article_path(article) %>
+                    <% end %>
                 </td>
                 <td>
                     <%= link_to 'Show Article' , article_path(article) %>
                 </td>
-                <td>
-                    <%= button_to 'Delete' , article_path(article), method: :delete, data: {confirm:"are you sure"} %>
-                </td>
+                
 
             </tr>
             <% end %>
-            <% will_paginate %>
+           
 
     </table>
